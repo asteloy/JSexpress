@@ -1,0 +1,6 @@
+nav {
+    max-width: 2160px;
+    margin-right: auto;
+    margin-left: auto;
+    flex-direction: column;
+}

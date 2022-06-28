@@ -1,0 +1,26 @@
+[
+  {
+    "name": "ShavaScript",
+    "address": "somewhere 1",
+    "phone": "+7 999 999 99 91",
+    "workinghours": "С 9:00 до 20:00",
+    "lat": 30,
+    "lng": 20
+  },
+  {
+    "name": "KebabStyle",
+    "address": "somewhere 2",
+    "phone": "+7 999 999 99 92",
+    "workinghours": "С 9:00 до 20:00",
+    "lat": 10,
+    "lng": 20
+  },
+  {
+    "name": "ShavMaster",
+    "address": "somewhere 3",
+    "phone": "+7 999 999 99 93",
+    "workinghours": "С 9:00 до 20:00",
+    "lat": 10,
+    "lng": 50
+  }
+]

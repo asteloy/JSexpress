@@ -1,0 +1,38 @@
+[
+    {
+    "id":1,
+    "role":"admin",
+    "email": "admin@mail",
+    "password": "ghjklsdf",
+    "name": "Vladimir",
+    "surName": "Putin",
+    "balanse": "999999999"
+    },
+    {
+    "id":2,
+    "role":"user",
+    "email": "ashot@mail",
+    "password": "ashot",
+    "name": "Evgeniy",
+    "surName": "Tuinov",
+    "balanse": "999999999"
+    },
+    {
+    "id":3,
+    "role":"user",
+    "email": "1@1",
+    "password": "1",
+    "name": "Varvara",
+    "surName": "Pavlik",
+    "balanse": "999999999"
+    },
+    {
+    "id":4,
+    "role":"user",
+    "email": "2@2",
+    "password": "2",
+    "name": "Daniil",
+    "surName": "Berezutskiy",
+    "balanse": "999999999"
+    }
+]

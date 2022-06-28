@@ -1,0 +1,31 @@
+[
+  {
+    "id": 12123,
+    "products": [
+      {
+        "id": 5,
+        "name": "чипсы",
+        "description": "35 грамм",
+        "price": 65,
+        "count": 3,
+        "category": "snack",
+        "imageUrl": "/images/products/cheetos.png",
+        "quantity": 1000
+      },
+      {
+        "id": 6,
+        "name": "салат цезарь",
+        "description": "100 грамм",
+        "price": 190,
+        "count": 3,
+        "category": "salad",
+        "imageUrl": "/images/products/caesar-salad.jpg",
+        "quantity": 1000
+      }
+    ],
+    "price": 500,
+    "status": "Ожидает оплаты",
+    "data": "12.20.2022",
+    "stream": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  }
+]

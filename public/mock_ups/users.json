@@ -1,0 +1,42 @@
+[
+    {
+    "id":1,
+    "role":"admin",
+    "email": "admin@mail",
+    "password": "admin",
+    "name": "Vladimir",
+    "surName": "Putin",
+    "status": "",
+    "place": "ShawScript"
+    },
+    {
+    "id":2,
+    "role":"worker",
+    "email": "ashot@mail",
+    "password": "ashot",
+    "name": "Evgeniy",
+    "surName": "Tuinov",
+    "status": "",
+    "place": "ShawScript"
+    },
+    {
+    "id":3,
+    "role":"worker",
+    "email": "1@1",
+    "password": "1",
+    "name": "Varvara",
+    "surName": "Pavlik",
+    "status": "",
+    "place": "KebabStyle"
+    },
+    {
+    "id":4,
+    "role":"worker",
+    "email": "2@2",
+    "password": "2",
+    "name": "Daniil",
+    "surName": "Berezutskiy",
+    "status": "",
+    "place": "ShawaScript"
+    }
+]

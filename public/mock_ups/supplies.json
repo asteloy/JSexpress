@@ -1,0 +1,113 @@
+[
+  {
+    "id":3,
+    "name":"сыр",
+    "description":"20 грамм",
+    "price":50,"category":"toping",
+    "image":null,
+    "quantity":1000
+  },
+{
+  "id":4,
+  "name":"грибы",
+  "description":"20 грамм",
+  "price":50,
+  "category":"toping",
+  "image":null,
+  "quantity":1000},
+{
+  "id":7
+  ,"name":"халапеньо",
+  "description":"20 грамм",
+  "price":50,
+  "category":"toping",
+  "image":null,
+  "quantity":1000
+},
+{
+  "id":8,
+  "name":"острый соус",
+  "description":"чилийский",
+  "price":50,
+  "category":"toping",
+  "image":null,
+  "quantity":1000
+},
+{
+  "id":9,
+  "name":"охота крепкое",
+  "description":"9 %"
+  ,"price":90,
+  "category":"alco",
+  "image":"/images/products/ohota.jpeg",
+  "quantity":1000
+},
+{
+  "id":5,
+  "name":"cola light",
+  "description":"no sugar",
+  "price":79,
+  "category":"drink",
+  "image":"/images/products/coca-cola-zero.jpeg",
+  "quantity":1000
+},
+{
+  "id":6,
+  "name":"картошка фри",
+  "description":"50 грамм",
+  "price":130,
+  "category":"meal",
+  "image":"/public/images/products/potato.jpeg",
+  "quantity":1000},
+{
+  "id":11,
+  "name":"шаурма с курицей",
+  "description":"300 ккал",
+  "price":230,
+  "category":"main",
+  "image":"/public/images/products/",
+  "quantity":1000
+},
+{
+  "id":1,
+  "name":"чипсы",
+  "description":"35 грамм",
+  "price":65,
+  "category":"snack",
+  "image":"/public/images/products/cheetos.png",
+  "quantity":1000},
+{
+  "id":2,
+  "name":"салат цезарь",
+  "description":"100 грамм",
+  "price":190,
+  "category":"salad",
+  "image":"/public/images/products/caesar-salad.jpg",
+  "quantity":1000},
+{
+  "id":12,
+  "name":"шаурма барбекю",
+  "description":"330 кал",
+  "price":260,"category":"main",
+  "image":"/public/images/products/red.jpeg",
+  "quantity":1000
+},
+{
+  "id":13,
+  "name":"шаурма  с картошкой",
+  "description":"330 кал",
+  "price":260,
+  "category":"main",
+  "image":"/images/products/potato.jpeg",
+  "quantity":1000
+},
+{
+  "id":14,
+  "name":"вегетарианская шаурма",
+  "description":"330 кал",
+  "price":260,
+  "category":"main",
+  "image":"/images/products/vegan.jpeg",
+  "quantity":1000
+  }
+]
