@@ -1,7 +1,7 @@
 import Router from "express";
 import productController from "../controllers/productController.js";
 
-const router = Router();
+const router = new Router();
 
 router.post('/',productController.create)
 router.get('/',productController.getAll)
