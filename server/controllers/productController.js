@@ -15,11 +15,11 @@ class ProductController {
     async create(req,res,next){
         try{
             const{name,price,brandId,categoryId,quantity,description}=req.body
-            const {image}=req.files
-            let filename=uuidv4()+".jpg"
-            image.mv(path.resolve(__dirname,"..","static",filename))
+            // const {image}=req.files
+            // let filename=uuidv4()+".jpg"
+            // image.mv(path.resolve(__dirname,"..","static",filename))
     
-            const product = await Product.create({name,price,brandId,categoryId,quantity,description, image:filename})
+            const product = await Product.create({name,price,brandId,categoryId,quantity,description})
     
             return res.json(product)
         }catch(e){
