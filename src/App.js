@@ -10,7 +10,8 @@ import ProductList from "./components/Product/ProductList";
 import LogInAction from "./components/LogIn/LogInAction";
 import Cart from "./components/Cart/Cart";
 import Order from "./components/Order/Order";
-
+import Registration from "./components/Registration/Registration";
+import CreateProduct from './components/Product/CreateProduct';
 
 function App() {
     const [cookies, setCookie] = useCookies(['cart', 'order', 'authData'], );
@@ -18,23 +19,22 @@ function App() {
     const [activeUser, setActiveUser] = useState(sessionStorage.getItem('user') || 'defaultUser')
 
     let content = null;
-    let navigation = null;
-    /* beautify ignore:start */
-    switch (activeUser) {
-        case 'defaultUser':
-            navigation = <Navigation page={activePage} coocki={{cookies, setCookie}} repage={changePage} logOut={logOut}/>
-            break;
-        case 'fired':
-            navigation = <Navigation page={activePage} coocki={{cookies, setCookie}} repage={changePage} logOut={logOut}/>
-            break;
-        case 'admin':
-            navigation = <Navigation page={activePage} coocki={{cookies, setCookie}} repage={changePage} logOut={logOut}/>
-            break;
-        default:
-            navigation = <Navigation page={activePage} coocki={{cookies, setCookie}} repage={changePage} logOut={logOut}/>
-            break;
+    let navigation = < Navigation page = {
+        activePage
     }
-    /* beautify ignore:end */
+    coocki = {
+        {
+            cookies,
+            setCookie
+        }
+    }
+    repage = {
+        changePage
+    }
+    logOut = {
+        logOut
+    }
+    />;
 
     /* beautify ignore:start */
     switch (activePage) {
@@ -49,6 +49,12 @@ function App() {
             break;
         case 'Вход':
             content = <LogInAction cookies={{cookies, setCookie}} setActiveUser={{activeUser, changeActiveUser} } logOut={logOut}/>
+            break;
+        case 'Регистрация':
+            content = <Registration cookies={{cookies, setCookie}} setActiveUser={{activeUser, changeActiveUser} }/>
+            break;
+        case 'ДобавлениеКарточки':
+            content = <CreateProduct cookies={{cookies, setCookie}} />
             break;
         default:
             content = <ProductList cookies={{cookies, setCookie}}/>

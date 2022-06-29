@@ -1,0 +1,32 @@
+[
+  {
+    "id": 12123,
+    "total": 40050,
+    "products": [
+      {
+        "id":9,
+        "name":"охота крепкое",
+        "description":"9 %",
+        "price":90,
+        "count": 3,
+        "category":"alco",
+        "imageUrl":"/images/products/ohota.jpeg",
+        "quantity":938
+      },
+      {
+        "id":5,
+        "name":"cola light",
+        "description":"no sugar",
+        "price":79,
+        "count": 10,
+        "category":"drink",
+        "image":"/images/products/coca-cola-zero.jpeg",
+        "quantity":1235
+      }
+    ],
+    "price": 500,
+    "status": "Ожидает оплаты",
+    "data": "12.20.2022",
+    "stream": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+  }
+]

@@ -23,8 +23,9 @@ function LogInAction(props) {
                 logInData.name = element.name;
                 logInData.surName = element.surName;
                 logInData.balanse = element.balanse;
+                logInData.role = element.role;
                 setCookie('authData', logInData, { path: '/' });
-            } else { setErrorMessage(<div class="text-danger">Не верно введены данные!</div>) }
+            } else { setErrorMessage(<div className="text-danger">Не верно введены данные!</div>) }
         });
         if (users !== undefined) changeActiveUser(users.role);
     }

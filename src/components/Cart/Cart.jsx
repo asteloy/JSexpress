@@ -4,10 +4,10 @@ import axios from "axios";
 
 
 function Cart(props) {
-    const {cookies, setCookie} = props.cookies;
+    const { cookies, setCookie } = props.cookies;
 
     function removeCartItem(cartItem) {
-        setCookie('cart', cookies.cart.filter(item => item.id !== cartItem.id), {path: '/'});
+        setCookie('cart', cookies.cart.filter(item => item.id !== cartItem.id), { path: '/' });
     }
 
     function handleItemQuality(quality, item) {
@@ -17,7 +17,7 @@ function Cart(props) {
                 arg.count = Number(quality);
             }
         })
-        setCookie('cart', getCart, {path: '/'});
+        setCookie('cart', getCart, { path: '/' });
     }
 
     function getLengthCart() {
@@ -34,19 +34,20 @@ function Cart(props) {
         if (!cookies.cart) return;
         const order = cookies.cart;
         const serverOrder = order.map(item => {
-            return {id: item.id, quantity: item.count};
+            return { id: item.id, quantity: item.count };
         })
 
         const data = await axios({
             method: "post",
-            url: "http://localhost:5000/order/create",
+            url: "",
             data: JSON.stringify(serverOrder),
-            headers: {"Content-Type": "application/json"},
+            headers: { "Content-Type": "application/json" },
         })
             .then(res => {
-                setCookie('cart', [], {path: '/'})
-                setCookie('order', [res.data], {path: '/'})
-            });
+                setCookie('cart', [], { path: '/' })
+                setCookie('order', [res.data], { path: '/' })
+            })
+            .catch(console.log("404"));
     }
 
     return <div className="row col-12">
@@ -54,7 +55,7 @@ function Cart(props) {
             {(cookies.cart && cookies.cart.length !== 0) ?
                 cookies.cart.map(item => {
                     return <CartItem key={item.id} {...item} handleItemQuality={handleItemQuality}
-                                     removeCartItem={removeCartItem}/>
+                        removeCartItem={removeCartItem} />
                 })
                 :
                 <h2 className="text-center">Корзина пустая :(</h2>
@@ -64,9 +65,9 @@ function Cart(props) {
         <div className="col col-1"></div>
 
 
-        <div className="m-3 p-0 col-md-4 card text-center" style={{height: '12rem'}}>
+        <div className="m-3 p-0 col-md-4 card text-center" style={{ height: '12rem' }}>
             <div className="card-header">
-                <button style={{width: '60%'}} className="btn btn-success" onClick={() => sendOrder()}>Заказать</button>
+                <button style={{ width: '60%' }} className="btn btn-success" onClick={() => sendOrder()}>Заказать</button>
             </div>
             <div className="card-body">
                 <h5 className="card-title">Ваша корзина</h5>

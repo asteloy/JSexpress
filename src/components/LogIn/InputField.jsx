@@ -10,7 +10,7 @@ const InputField = ({
   return (
     /* beautify ignore:start */
     <label style={{ display: 'block' }}>
-      <div class="input-group mt-2">
+      <div className="input-group mt-2">
         <input
           type={type}
           value={value}

@@ -23,7 +23,7 @@ export default function Navigation(props) {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
-                <img src="/images/logo.png" alt="zozon" width="60" height="24"
+                <img src="/images/logo.png" alt="zozon" width="100" height="24"
                     className=" d-inline-block align-text-center bg-light" />
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false"
@@ -42,6 +42,13 @@ export default function Navigation(props) {
                                 href="/"
                                 onClick={repage}>Мои заказы</a>
                         </li>
+                        {cookies.authData.role === 'admin' ?
+                            <li className="nav-item">
+                                <a data-page="ДобавлениеКарточки" className={`nav-link ${page === 'ДобавлениеКарточки' ? 'active' : ''}`}
+                                    href="/"
+                                    onClick={repage}>Добавить карточку товара</a>
+                            </li> : <></>
+                        }
                     </ul>
                     <ul className="navbar-nav d-flex">
                         {(cookies.authData !== undefined && cookies.authData !== "undefined") ?
@@ -50,10 +57,14 @@ export default function Navigation(props) {
                                     className="bi bi-door-open"></i> Выйти</a>
                             </li>
                             :
-                            <li className="nav-item">
-                                <a data-page="Вход" href="/" className={`nav-link ${page === 'Вход' ? 'active' : ''}`} onClick={repage}><i
-                                    className="bi bi-door-open"></i> Войти</a>
+                            <><li className="nav-item">
+                                <a data-page="Регистрация" href="/" className={`nav-link`} onClick={repage}><i
+                                    className="bi bi-key"></i> Регистрация</a>
                             </li>
+                                <li className="nav-item">
+                                    <a data-page="Вход" href="/" className={`nav-link ${page === 'Вход' ? 'active' : ''}`} onClick={repage}><i
+                                        className="bi bi-door-open"></i> Войти</a>
+                                </li></>
                         }
                         <li className="nav-item d-f" onClick={repage} data-page="Корзина">
                             <div className="d-flex align-items-center">

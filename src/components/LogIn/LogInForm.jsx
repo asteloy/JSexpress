@@ -2,6 +2,9 @@ import React, {
     useState
 } from 'react';
 import InputField from './InputField';
+
+
+
 const LogInForm = ({
     initialData,
     onSubmit,
@@ -73,7 +76,7 @@ const LogInForm = ({
                 onBlur={e => blurHandler(e)}
                 onChange={e => (setLogInData({ ...logInData, email: e.target.value }), checkInput(e))}
             />
-            {(emailDirty && emailError) && <div class="text-danger">{emailError}</div>}
+            {(emailDirty && emailError) && <div className="text-danger">{emailError}</div>}
             <InputField
                 type="password"
                 placeholder="Пароль"
@@ -81,7 +84,7 @@ const LogInForm = ({
                 onBlur={e => blurHandler(e)}
                 onChange={e => (setLogInData({ ...logInData, password: e.target.value }), checkInput(e))}
             />
-            {(passwordDirty && passwordError) && <div class="text-danger">{passwordError}</div>}
+            {(passwordDirty && passwordError) && <div className="text-danger">{passwordError}</div>}
             {errorMessage}
             <button style={{ width: '20%' }} className="btn btn-success mt-2">Войти</button>
         </form>

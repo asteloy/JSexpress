@@ -1,7 +1,7 @@
 import useFetch from "../../hook/useFetch";
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import supplies from "./supplies.json"
+
 function ProductList(props) {
     const { cookies, setCookie } = props.cookies;
 
