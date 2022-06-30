@@ -79,9 +79,10 @@ export default function Navigation(props) {
                 </div>
             </div>
             {(cookies.authData !== undefined && cookies.authData !== "undefined") ? <div className="container-fluid">
-                <div className=" d-inline-block" ><p className="font-weight-bold text-info">Привет, {cookies.authData.name} {cookies.authData.surName}</p></div>
-                <div className=" d-inline-block">
-                    <p className="font-weight-bold font-size-14 text-info">Баланс: {cookies.authData.balanse}</p>
+                <div className=" d-inline-block" ><p className="intro h5 text-info ">Привет, {cookies.authData.name} {cookies.authData.surName}</p></div>
+                <div className="price">
+                    <p className="balance d-inline-block font-weight-bold h5 text-info">Баланс: {cookies.authData.balance}</p>
+                    <button style={{ width: '110px' }} className="btn btn-success">Пополнить</button>
                 </div>
             </div> : <></>}
         </nav>

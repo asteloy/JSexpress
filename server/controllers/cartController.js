@@ -6,6 +6,7 @@ import ApiError from "../error/ApiError.js";
 
 
 const CartProduct = model.CartProduct;
+const Product = model.Product;
 
 
 
@@ -14,19 +15,29 @@ class CartController {
     async addToCart(req,res,next){
 
         const user = req.user
+        console.log(user);
         const {productId} = req.body
-        const cart = await CartProduct.create({cartId : user.id, productId : productId})
-        return res.json({cart})
+        const cartProduct = await CartProduct.create({cartId:user.id,productId})
+        return res.json({cartProduct})
     }
 
-    // async getBasketUser(req,res){
-    //     const {id} = req.user
-    //     const basket = await BasketDevice.findAll({include: {
-    //             model: Device
-    //         }, where: {basketId: id}})
+    async getCartUser(req,res){
+        const {id} = req.user
+        const cart = await CartProduct.findAll({include: {
+                model: Product
+            }, where: {cartId: id}})
 
-    //     return res.json(basket)
-    // }
+        return res.json(cart)
+    }
+
+    async deleteAllProductCart(req,res){
+        const {id} = req.user
+        const cart = await CartProduct.destroy({where:{cartId:id}})
+
+        return res.json(cart)
+    }
+
+
 
 }
 export default  new CartController();

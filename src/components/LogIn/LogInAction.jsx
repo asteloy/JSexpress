@@ -24,10 +24,15 @@ function LogInAction(props) {
             .then(res => res.data)
             .catch(() => setErrorMessage(<div class="text-danger">Не верно введены данные!</div>))
         let token = users.token;
+
         let decoded = jwt_decode(token);
         if (decoded !== undefined) changeActiveUser(decoded.role);
         let role = decoded.role
-        setCookie('authData', { token: token, role: role }, { path: '/' });
+        let name = decoded.name
+        let surName = decoded.surName
+        let balance = decoded.balance
+        console.log(decoded);
+        setCookie('authData', { token: token, role: role, name: name, surName: surName, balance: balance }, { path: '/' });
     }
 
     /* beautify ignore:start */
