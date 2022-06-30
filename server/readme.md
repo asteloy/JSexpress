@@ -6,7 +6,8 @@
 
 ### Логическая схема БД:
 
-![БД](https://user-images.githubusercontent.com/36341122/176776801-3dc55acd-149c-488d-9118-d55a2d82a70e.png)
+![БД](https://user-images.githubusercontent.com/36341122/176777114-ce996ce0-810c-4c9b-a01a-500cc28614ce.png)
+
 
 
 
