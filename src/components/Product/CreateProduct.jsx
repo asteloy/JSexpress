@@ -2,7 +2,6 @@ import React, { useRef } from 'react'
 import { useState } from 'react';
 import InputField from '../LogIn/InputField';
 import axios from 'axios';
-import { divide } from 'lodash';
 
 const initialData = {
     id: '',
@@ -15,9 +14,7 @@ const initialData = {
 
 
 export default function CreateProduct(props) {
-    const { cookies, setCookie } = props.cookies;
     const [productData, setproductData] = useState(initialData);
-    const ref = useRef();
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -32,15 +29,13 @@ export default function CreateProduct(props) {
 
     async function onSubmit(productData) {
 
-        productData.id = Math.random;
-
         const data = await axios({
             method: "post",
             url: "http://localhost:5000/api/product",
             data: JSON.stringify(productData),
             headers: { "Content-Type": "application/json" },
         })
-            .then(console.log("успех"))
+            .then(() => props.changePage("Каталог"))
             .catch(e => console.log(e));
     }
 
