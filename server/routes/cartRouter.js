@@ -9,6 +9,7 @@ const router =new Router()
 router.get('/', authMiddleware,cartController.getCartUser)
 router.post('/add',authMiddleware,cartController.addToCart)
 router.post('/delete',authMiddleware,cartController.deleteAllProductCart)
+router.post('/deleteOne',authMiddleware,cartController.deleteOneProductCart)
 
 
 export default router
