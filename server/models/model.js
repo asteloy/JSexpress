@@ -12,14 +12,17 @@ const User = sequelize.define('user',{
     role:{type:DataTypes.STRING,defaultValue:"USER"},
 })
 
-const Cart = sequelize.define('cart',{
-    id:{type: DataTypes.INTEGER,primaryKey:true,autoIncrement:true},
-})
-
-const CartProduct = sequelize.define('cartProduct',{
+const OrderProduct = sequelize.define('orderProduct',{
     id:{type: DataTypes.INTEGER,primaryKey:true,autoIncrement:true},
     count:{type: DataTypes.INTEGER,defaultValue:1},
 })
+const Order = sequelize.define('order',{
+    id:{type: DataTypes.INTEGER,primaryKey:true,autoIncrement:true},
+    total:{type: DataTypes.INTEGER,defaultValue:1},
+    price:{type: DataTypes.INTEGER,defaultValue:0},
+    status:{type: DataTypes.STRING,defaultValue:"В обработке"},
+})
+
 
 const Product = sequelize.define('product',{
     id:{type: DataTypes.INTEGER,primaryKey:true,autoIncrement:true},
@@ -36,20 +39,29 @@ const Category = sequelize.define('category',{
     name:{type:DataTypes.STRING, unique:true, allowNull:false},
 })
 
-User.hasOne(Cart);
-Cart.belongsTo(User);
+User.hasOne(Order);
+Order.belongsTo(User);
 
-Cart.hasMany(CartProduct);
-CartProduct.belongsTo(Cart);
-
-Product.hasMany(CartProduct);
-CartProduct.belongsTo(Product);
+Product.hasMany(OrderProduct);
+OrderProduct.belongsTo(Product);
 
 Category.hasMany(Product);
 Product.belongsTo(Category);
 
+
+Product.belongsToMany(Order, {
+    through: "orderProduct",
+    as: "orders",
+    foreignKey: "product_id",
+  });
+
+
+Order.belongsToMany(Product, {
+    through: "orderProduct",
+    as: "products",
+    foreignKey: "order_id",
+  });
+
 export default {
-    User,Cart,CartProduct,Category,Product
+    User,Category,Product,Order,OrderProduct
 }
-
-
