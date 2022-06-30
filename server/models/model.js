@@ -1,15 +1,36 @@
 import sequelize from "../db.js";
 
-import { DataTypes } from "sequelize";
+import {
+    DataTypes
+} from "sequelize";
 
-const User = sequelize.define('user',{
-    id:{type: DataTypes.INTEGER,primaryKey:true,autoIncrement:true},
-    email:{type:DataTypes.STRING, unique:true},
-    password:{type:DataTypes.STRING},
-    name:{type:DataTypes.STRING},
-    surName:{type:DataTypes.STRING},
-    balance:{type:DataTypes.INTEGER,defaultValue:0},
-    role:{type:DataTypes.STRING,defaultValue:"USER"},
+const User = sequelize.define('user', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    email: {
+        type: DataTypes.STRING,
+        unique: true
+    },
+    password: {
+        type: DataTypes.STRING
+    },
+    name: {
+        type: DataTypes.STRING
+    },
+    surName: {
+        type: DataTypes.STRING
+    },
+    balance: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0
+    },
+    role: {
+        type: DataTypes.STRING,
+        defaultValue: "USER"
+    },
 })
 
 const OrderProduct = sequelize.define('orderProduct',{
@@ -23,20 +44,42 @@ const Order = sequelize.define('order',{
     status:{type: DataTypes.STRING,defaultValue:"В обработке"},
 })
 
-
-const Product = sequelize.define('product',{
-    id:{type: DataTypes.INTEGER,primaryKey:true,autoIncrement:true},
-    name:{type:DataTypes.STRING, unique:true, allowNull:false},
-    description:{type:DataTypes.TEXT,allowNull:false},
-    price:{type:DataTypes.INTEGER,allowNull:false},
-    quantity:{type:DataTypes.INTEGER,allowNull:false},
-    image:{type:DataTypes.STRING},
-
+const Product = sequelize.define('product', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    name: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false
+    },
+    description: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    price: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    quantity: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
 })
 
-const Category = sequelize.define('category',{
-    id:{type: DataTypes.INTEGER,primaryKey:true,autoIncrement:true},
-    name:{type:DataTypes.STRING, unique:true, allowNull:false},
+const Category = sequelize.define('category', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true
+    },
+    name: {
+        type: DataTypes.STRING,
+        unique: true,
+        allowNull: false
+    },
 })
 
 User.hasOne(Order);
@@ -65,3 +108,4 @@ Order.belongsToMany(Product, {
 export default {
     User,Category,Product,Order,OrderProduct
 }
+

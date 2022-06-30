@@ -8,7 +8,7 @@ export default function ProductCard(props) {
     return (
         <>
             <div className="card product p-2 m-3 d-flex flex-column justify-content-between" style={{ width: '18rem' }}>
-                <img className="card-img-top p-3" style={{ height: '18rem' }} src={props.product.image}
+                <img className="card-img-top p-3" style={{ height: '18rem' }} src='#'
                     alt={props.product.name} />
                 <div className="m-2">
                     <h5 className="card-title">{props.product.name}</h5>

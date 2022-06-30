@@ -4,3 +4,25 @@ nav {
     margin-left: auto;
     flex-direction: column;
 }
+
+.price {
+    display: flex;
+    justify-content: space-between;
+    width: 260px;
+    margin-right: 10px;
+    max-height: 40px;
+}
+
+.user__info {
+    font-size: 14;
+}
+
+.balance {
+    width: 150px;
+    margin-bottom: 0;
+    margin-top: 12px;
+}
+
+.intro {
+    margin-bottom: -0.5rem;
+}

@@ -7,7 +7,7 @@ function ProductList(props) {
 
     const { isLoading, serverError, apiData } = useFetch(
         "GET",
-        "mock_ups/supplies.json",
+        "http://localhost:5000/api/product",
         {}
     );
 
@@ -46,9 +46,8 @@ function ProductList(props) {
     }, [])
 
     useEffect(() => {
-        if (!isLoading && apiData) setData(apiData);
+        if (!isLoading && apiData) setData(apiData.rows);
     }, [isLoading])
-
     if (isLoading && !apiData) {
         return <div>
             loading...

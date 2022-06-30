@@ -1,7 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import InputField from '../LogIn/InputField';
-import users from '../LogIn/users.json';
+import axios from 'axios';
+import jwt_decode from "jwt-decode";
 
 const initialData = {
     id: '',
@@ -22,15 +23,26 @@ function Registration(props) {
     const [emailError, setEmailError] = useState("Емейл не может быть пустым!");
     const [passwordError, setPasswordError] = useState("Пароль не может быть пустым!");
 
-    function onSubmit(regData) {
-        console.log(regData);
-        regData.role = 'user'
-        regData.id = Math.random();
-        regData.balanse = 0;
-        setCookie('authData', regData, { path: '/' });
-        users.push(regData);
-        if (users !== undefined) changeActiveUser(users.role);
-        console.log(users);
+    async function onSubmit(regData) {
+
+        const users = await axios({
+            method: "post",
+            url: "http://localhost:5000/api/user/registration",
+            data: JSON.stringify(regData),
+            headers: { "Content-Type": "application/json" },
+        })
+            .then(res => res.data)
+            .catch(e => console.log(e));
+
+        let token = users.token;
+        let decoded = jwt_decode(token);
+        let role = decoded.role;
+        let name = decoded.name;
+        let surName = decoded.surName;
+        let balance = decoded.balance;
+
+        if (role !== undefined) changeActiveUser(role);
+        setCookie('authData', { token: token, role: role, name: name, surName: surName, balance: balance }, { path: '/' });
     }
 
     const handleSubmit = e => {
@@ -101,14 +113,14 @@ function Registration(props) {
             onChange={e => (setRegData({ ...regData, password: e.target.value }), checkInput(e))}
         />
         <InputField
-            type="name"
+            type="string"
             placeholder="Имя"
             value={regData.name}
             onBlur={e => blurHandler(e)}
             onChange={e => (setRegData({ ...regData, name: e.target.value }), checkInput(e))}
         />
         <InputField
-            type="surname"
+            type="string"
             placeholder="Фамилия"
             value={regData.surName}
             onBlur={e => blurHandler(e)}

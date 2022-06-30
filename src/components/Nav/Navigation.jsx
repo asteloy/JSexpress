@@ -6,7 +6,6 @@ export default function Navigation(props) {
     const { repage, page } = props;
     const { cookies, setCookie } = props.coocki;
     const logOut = props.logOut;
-
     function getLengthCart() {
         if (!cookies.cart) return 0;
         return cookies.cart.reduce((acc, item) => acc + item.count, 0);
@@ -19,7 +18,7 @@ export default function Navigation(props) {
     useEffect(() => {
         setLengthCart(getLengthCart);
     }, [cookies.cart])
-    console.log(cookies);
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
@@ -78,10 +77,11 @@ export default function Navigation(props) {
                     </ul>
                 </div>
             </div>
-            {(cookies.authData !== undefined && cookies.authData !== "undefined") ? <div className="container-fluid">
-                <div className=" d-inline-block" ><p className="font-weight-bold text-info">Привет, {cookies.authData.name} {cookies.authData.surName}</p></div>
-                <div className=" d-inline-block">
-                    <p className="font-weight-bold font-size-14 text-info">Баланс: {cookies.authData.balanse}</p>
+            {(cookies.authData !== undefined && cookies.authData !== "undefined") ? <div className="pt-2 container-fluid">
+                <div className=" d-inline-block" ><p className="intro h5 text-info ">Привет, {cookies.authData.name} {cookies.authData.surName}</p></div>
+                <div className="price">
+                    <p className="balance d-inline-block font-weight-bold h5 text-info">Баланс: {cookies.authData.balance}</p>
+                    <button onClick={() => props.setModalActive(true)} style={{ width: '110px' }} className="btn btn-success" >Пополнить</button>
                 </div>
             </div> : <></>}
         </nav>

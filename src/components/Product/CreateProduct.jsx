@@ -1,62 +1,75 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useState } from 'react';
 import InputField from '../LogIn/InputField';
+import axios from 'axios';
 
 const initialData = {
     id: '',
     name: '',
     description: '',
     price: '',
-    category: '',
-    image: '',
-    quantity: '',
+    quantity: ''
 };
 
+
+
 export default function CreateProduct(props) {
-    const { cookies, setCookie } = props.cookies;
     const [productData, setproductData] = useState(initialData);
 
-    function onSubmit(productData) {
-        console.log(productData);
-        productData.role = 'user'
-        productData.id = Math.random();
-        productData.balanse = 0;
-        setCookie('authData', productData, { path: '/' });
+    const handleSubmit = e => {
+        e.preventDefault();
+        onSubmit(productData)
     }
 
+    const onSelectImageHandler = (files) => {
+        const file = files[0];
+        const formData = new FormData(file);
+        formData.append('file', file)
+    }
+
+    async function onSubmit(productData) {
+
+        const data = await axios({
+            method: "post",
+            url: "http://localhost:5000/api/product",
+            data: JSON.stringify(productData),
+            headers: { "Content-Type": "application/json" },
+        })
+            .then(() => props.changePage("Каталог"))
+            .catch(e => console.log(e));
+    }
 
     return (
         /* beautify ignore:start */
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit}>
             <InputField
-                type="name"
+                type="string"
                 placeholder="Название"
                 value={productData.name}
                 onChange={e => (setproductData({ ...productData, name: e.target.value }))}
             />
             <InputField
-                type="description"
+                type="string"
                 placeholder="Описание"
                 value={productData.description}
                 onChange={e => (setproductData({ ...productData, description: e.target.value }))}
             />
             <InputField
-                type="price"
+                type="number"
                 placeholder="Цена"
                 value={productData.price}
                 onChange={e => (setproductData({ ...productData, price: e.target.value }))}
             />
             <InputField
-                type="category"
-                placeholder="Категория"
-                value={productData.category}
-                onChange={e => (setproductData({ ...productData, category: e.target.value }))}
-            />
-            <InputField
-                type="quantity"
+                type="number"
                 placeholder="Количество на складе"
                 value={productData.quantity}
                 onChange={e => (setproductData({ ...productData, quantity: e.target.value }))}
+            />
+            <InputField
+                type="file"
+                placeholder="Img"
+                onChange={(e) => onSelectImageHandler(e.target.files)}
             />
             <button style={{ width: '20%' }} className="btn btn-success mt-2">Добавить продукт</button>
         </form>
