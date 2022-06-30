@@ -48,5 +48,22 @@ class UserController {
         return res.json({token})
     }
 
+    async updateBalance(req,res,next){
+
+        const {balance} = req.body
+        const user = req.user
+        let UserNoUpdated = await User.findOne({where:{id:user.id}})
+        
+        if (UserNoUpdated){
+            await User.update({balance:UserNoUpdated.balance+ +balance},{where:{
+                id:user.id
+            }})
+
+            UserNoUpdated = await User.findOne({where:{id:user.id}})
+            const token = generateJwt(UserNoUpdated.id,UserNoUpdated.email,UserNoUpdated.role,UserNoUpdated.name,UserNoUpdated.surName,UserNoUpdated.balance);
+            return res.json({token})
+        }
+    }
+
 }
 export default new UserController();
