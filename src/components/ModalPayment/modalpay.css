@@ -29,3 +29,8 @@
 .modal__content.active {
     transform: scale(1);
 }
+
+.btn__modal {
+    margin-top: 5px;
+    width: 100%;
+}
