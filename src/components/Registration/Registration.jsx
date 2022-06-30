@@ -8,7 +8,7 @@ const initialData = {
     id: '',
     email: '',
     password: '',
-    role: '',
+    role: 'admin',
     name: '',
     surName: '',
     balanse: '',
@@ -21,7 +21,6 @@ function Registration(props) {
     const [emailDirty, setEmailDirty] = useState(false);
     const [passwordDirty, setPasswordDirty] = useState(false);
     const [emailError, setEmailError] = useState("Емейл не может быть пустым!");
-    const [passwordError, setPasswordError] = useState("Пароль не может быть пустым!");
 
     async function onSubmit(regData) {
 

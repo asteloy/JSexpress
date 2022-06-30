@@ -1,6 +1,5 @@
 import React from "react";
 import OrderItems from "./OrderItems";
-
 import catalog from "./catalog.json"
 
 function Order(props) {
