@@ -5,11 +5,10 @@ import authMiddleware from '../middleware/authMiddleware.js'
 
 const router =new Router()
 
-
-
 // ------- CRUD корзины ------- //
-// router.get('/', authMiddleware,cartController.getCartUser)
-router.post('/',authMiddleware,cartController.addToCart)
+router.get('/', authMiddleware,cartController.getCartUser)
+router.post('/add',authMiddleware,cartController.addToCart)
+router.post('/delete',authMiddleware,cartController.deleteAllProductCart)
 
 
 export default router

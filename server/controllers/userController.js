@@ -4,11 +4,11 @@ import Jwt from "jsonwebtoken";
 import model from "../models/model.js"
 
 const User = model.User;
-const Cart = model.User;
+const Cart = model.Cart;
 
-const generateJwt = (id,email,role)=>{
+const generateJwt = (id,email,role,name,surName,balance)=>{
     return Jwt.sign(
-        {id,email,role},
+        {id,email,role,name,surName,balance},
         process.env.SECRET_KEY,
         {expiresIn:'12h'}
         )
@@ -16,7 +16,7 @@ const generateJwt = (id,email,role)=>{
 
 class UserController {
     async registration(req,res,next){
-        const {email,password,role,name,surName} = req.body
+        const {email,password,role,balance,name,surName} = req.body
         if(!email || !password){
             return next(ApiError.badRequest("Вы не ввели пароль или email"));
         }
@@ -25,9 +25,9 @@ class UserController {
             return next(ApiError.badRequest('Пользователь с таким Email уже зарегистрирован'))
         }
         const hashPassword = await bcrypt.hash(password,5)
-        const user = await User.create({email,name,surName,role,password:hashPassword})
+        const user = await User.create({email,name,surName,role,password:hashPassword,balance})
         const cart = await Cart.create({userId:user.id})
-        const token  = generateJwt(user.id,user.email, user.role)
+        const token  = generateJwt(user.id,user.email,user.role,user.name,user.surName,user.balance)
         return res.json({token});
     }
     async login(req,res,next){
@@ -40,11 +40,11 @@ class UserController {
         if (!comparePassword){
             return next(ApiError.internal('Указан не верный пароль'))
         }
-        const token =generateJwt(user.id,user.email,user.role)
+        const token =generateJwt(user.id,user.email,user.role,user.name,user.surName,user.balance)
         return res.json({token})
     }
     async check(req,res,next){
-        const token = generateJwt(req.user.id,req.user.email,req.user.role);
+        const token = generateJwt(req.user.id,req.user.email,req.user.role,req.user.name,req.user.surName,req.user.balance);
         return res.json({token})
     }
 
