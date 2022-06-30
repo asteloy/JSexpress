@@ -1,8 +1,8 @@
 import React from 'react';
-// import axios from "axios";
+import axios from "axios";
 import LogInForm from './LogInForm';
 import { useState } from 'react';
-import users from './users.json';
+import jwt_decode from "jwt-decode";
 
 const logInData = {
     email: '',
@@ -14,20 +14,25 @@ function LogInAction(props) {
     const { activeUser, changeActiveUser } = props.setActiveUser;
     const [errorMessage, setErrorMessage] = useState(<></>)
 
-    function onSubmit(logInData) {
-        users.forEach(element => {
-            if (element.email == logInData.email && element.password == logInData.password) {
-                logInData.id = element.id;
-                logInData.isOwner = element.isOwner;
-                logInData.isWorker = element.isWorker;
-                logInData.name = element.name;
-                logInData.surName = element.surName;
-                logInData.balanse = element.balanse;
-                logInData.role = element.role;
-                setCookie('authData', logInData, { path: '/' });
-            } else { setErrorMessage(<div className="text-danger">Не верно введены данные!</div>) }
-        });
-        if (users !== undefined) changeActiveUser(users.role);
+    async function onSubmit(logInData) {
+        const users = await axios({
+            method: "post",
+            url: "http://localhost:5000/api/user/login",
+            data: JSON.stringify(logInData),
+            headers: { "Content-Type": "application/json" },
+        })
+            .then(res => res.data)
+            .catch(() => setErrorMessage(<div class="text-danger">Не верно введены данные!</div>))
+        let token = users.token;
+
+        let decoded = jwt_decode(token);
+        if (decoded !== undefined) changeActiveUser(decoded.role);
+        let role = decoded.role
+        let name = decoded.name
+        let surName = decoded.surName
+        let balance = decoded.balance
+        console.log(decoded);
+        setCookie('authData', { token: token, role: role, name: name, surName: surName, balance: balance }, { path: '/' });
     }
 
     /* beautify ignore:start */

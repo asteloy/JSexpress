@@ -10,7 +10,7 @@ function ProductList(props) {
         "http://localhost:5000/api/product",
         {}
     );
-    console.log(apiData);
+
     const [data, setData] = useState([]);
 
     const [cart, setCart] = useState([]);
@@ -46,9 +46,8 @@ function ProductList(props) {
     }, [])
 
     useEffect(() => {
-        if (!isLoading && apiData) setData([apiData]);
+        if (!isLoading && apiData) setData(apiData.rows);
     }, [isLoading])
-
     if (isLoading && !apiData) {
         return <div>
             loading...
