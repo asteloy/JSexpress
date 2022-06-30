@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import InputField from '../LogIn/InputField';
 import axios from 'axios';
+import jwt_decode from "jwt-decode";
 
 const initialData = {
     id: '',
@@ -23,19 +24,25 @@ function Registration(props) {
     const [passwordError, setPasswordError] = useState("Пароль не может быть пустым!");
 
     async function onSubmit(regData) {
-        console.log(regData);
-        regData.id = 1;
 
-        const data = await axios({
+        const users = await axios({
             method: "post",
             url: "http://localhost:5000/api/user/registration",
             data: JSON.stringify(regData),
             headers: { "Content-Type": "application/json" },
         })
-            .then(res => {
-                setCookie('authData', res.data, { path: '/' });
-            })
-            .catch(console.log("404"));
+            .then(res => res.data)
+            .catch(e => console.log(e));
+
+        let token = users.token;
+        let decoded = jwt_decode(token);
+        let role = decoded.role;
+        let name = decoded.name;
+        let surName = decoded.surName;
+        let balance = decoded.balance;
+
+        if (role !== undefined) changeActiveUser(role);
+        setCookie('authData', { token: token, role: role, name: name, surName: surName, balance: balance }, { path: '/' });
     }
 
     const handleSubmit = e => {
@@ -106,14 +113,14 @@ function Registration(props) {
             onChange={e => (setRegData({ ...regData, password: e.target.value }), checkInput(e))}
         />
         <InputField
-            type="name"
+            type="string"
             placeholder="Имя"
             value={regData.name}
             onBlur={e => blurHandler(e)}
             onChange={e => (setRegData({ ...regData, name: e.target.value }), checkInput(e))}
         />
         <InputField
-            type="surname"
+            type="string"
             placeholder="Фамилия"
             value={regData.surName}
             onBlur={e => blurHandler(e)}

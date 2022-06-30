@@ -12,12 +12,13 @@ import Cart from "./components/Cart/Cart";
 import Order from "./components/Order/Order";
 import Registration from "./components/Registration/Registration";
 import CreateProduct from './components/Product/CreateProduct';
+import ModalPayment from './components/ModalPayment/ModalPayment'
 
 function App() {
     const [cookies, setCookie] = useCookies(['cart', 'order', 'authData'], );
     const [activePage, setActivePage] = useState(sessionStorage.getItem('page') || 'Каталог');
-    const [activeUser, setActiveUser] = useState(sessionStorage.getItem('user') || 'defaultUser')
-
+    const [activeUser, setActiveUser] = useState(sessionStorage.getItem('user') || 'defaultUser');
+    const [modalActive, setModalActive] = useState(true);
     let content = null;
     let navigation = < Navigation page = {
         activePage
@@ -33,6 +34,9 @@ function App() {
     }
     logOut = {
         logOut
+    }
+    setModalActive = {
+        setModalActive
     }
     />;
 
@@ -54,7 +58,7 @@ function App() {
             content = <Registration cookies={{cookies, setCookie}} setActiveUser={{activeUser, changeActiveUser} }/>
             break;
         case 'ДобавлениеКарточки':
-            content = <CreateProduct cookies={{cookies, setCookie}} />
+            content = <CreateProduct cookies={{cookies, setCookie}} changePage = {changePage} />
             break;
         default:
             content = <ProductList cookies={{cookies, setCookie}}/>
@@ -101,6 +105,7 @@ function App() {
                     {content}
                 </div>
             </main>
+            <ModalPayment cookies={{cookies, setCookie}} active={modalActive} setActive={setModalActive}/>
         </>
     );
     /* beautify ignore:end */
