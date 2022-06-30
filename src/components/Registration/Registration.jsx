@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import InputField from '../LogIn/InputField';
-import users from '../LogIn/users.json';
+import axios from 'axios';
 
 const initialData = {
     id: '',
@@ -22,15 +22,20 @@ function Registration(props) {
     const [emailError, setEmailError] = useState("Емейл не может быть пустым!");
     const [passwordError, setPasswordError] = useState("Пароль не может быть пустым!");
 
-    function onSubmit(regData) {
+    async function onSubmit(regData) {
         console.log(regData);
-        regData.role = 'user'
-        regData.id = Math.random();
-        regData.balanse = 0;
-        setCookie('authData', regData, { path: '/' });
-        users.push(regData);
-        if (users !== undefined) changeActiveUser(users.role);
-        console.log(users);
+        regData.id = 1;
+
+        const data = await axios({
+            method: "post",
+            url: "http://localhost:5000/api/user/registration",
+            data: JSON.stringify(regData),
+            headers: { "Content-Type": "application/json" },
+        })
+            .then(res => {
+                setCookie('authData', res.data, { path: '/' });
+            })
+            .catch(console.log("404"));
     }
 
     const handleSubmit = e => {

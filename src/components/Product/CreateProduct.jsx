@@ -9,8 +9,7 @@ const initialData = {
     name: '',
     description: '',
     price: '',
-    image: '',
-    quantity: '',
+    quantity: ''
 };
 
 
@@ -20,8 +19,6 @@ export default function CreateProduct(props) {
     const [productData, setproductData] = useState(initialData);
     const ref = useRef();
 
-    console.log(productData);
-
     const handleSubmit = e => {
         e.preventDefault();
         onSubmit(productData)
@@ -30,17 +27,13 @@ export default function CreateProduct(props) {
     const onSelectImageHandler = (files) => {
         const file = files[0];
         const formData = new FormData(file);
-        console.log(file);
         formData.append('file', file)
-        console.log(formData);
-        productData.image = formData;
     }
 
     async function onSubmit(productData) {
-        console.log(productData);
-        productData.id = 1;
-        productData.quantity = 1;
-        productData.price = 1;
+
+        productData.id = Math.random;
+
         const data = await axios({
             method: "post",
             url: "http://localhost:5000/api/product",
@@ -48,39 +41,39 @@ export default function CreateProduct(props) {
             headers: { "Content-Type": "application/json" },
         })
             .then(console.log("успех"))
-            .catch(console.log("ne успех"));
+            .catch(e => console.log(e));
     }
 
     return (
         /* beautify ignore:start */
         <form onSubmit={handleSubmit}>
             <InputField
-                type="name"
+                type="string"
                 placeholder="Название"
                 value={productData.name}
                 onChange={e => (setproductData({ ...productData, name: e.target.value }))}
             />
             <InputField
-                type="description"
+                type="string"
                 placeholder="Описание"
                 value={productData.description}
                 onChange={e => (setproductData({ ...productData, description: e.target.value }))}
             />
             <InputField
-                type="integer"
+                type="number"
                 placeholder="Цена"
                 value={productData.price}
                 onChange={e => (setproductData({ ...productData, price: e.target.value }))}
             />
             <InputField
-                type="integer"
+                type="number"
                 placeholder="Количество на складе"
                 value={productData.quantity}
                 onChange={e => (setproductData({ ...productData, quantity: e.target.value }))}
             />
             <InputField
                 type="file"
-                placeholder="Количество на складе"
+                placeholder="Img"
                 onChange={(e) => onSelectImageHandler(e.target.files)}
             />
             <button style={{ width: '20%' }} className="btn btn-success mt-2">Добавить продукт</button>

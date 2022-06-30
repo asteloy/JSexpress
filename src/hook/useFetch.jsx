@@ -17,7 +17,6 @@ function useFetch(method, url, body = {}) {
                 const data = await resp?.data;
 
                 setApiData(data);
-                console.log(data)
                 setIsLoading(false);
             } catch (error) {
                 setServerError(error);
