@@ -10,7 +10,7 @@ export default function Navigation(props) {
         if (!cookies.cart) return 0;
         return cookies.cart.reduce((acc, item) => acc + item.count, 0);
     }
-    console.log(props);
+
     useEffect(() => {
         setLengthCart(getLengthCart() || 0);
     }, [])
@@ -18,7 +18,7 @@ export default function Navigation(props) {
     useEffect(() => {
         setLengthCart(getLengthCart);
     }, [cookies.cart])
-    console.log(cookies);
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid">
