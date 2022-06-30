@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
-import InputField from '../LogIn/InputField';
 import './modalpay.css';
 import jwt_decode from "jwt-decode";
 
